@@ -6,3 +6,4 @@ This is a simple ***ping-pong*** game.
 ## Purpose
 This was made *entirely* for educational purposes.
 > It is protected by the MIT license and a thousand rats.
+-# from pygame import *
