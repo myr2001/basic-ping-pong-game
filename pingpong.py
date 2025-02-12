@@ -10,10 +10,10 @@ background_color = (130, 210, 255) # RGB
 window.fill(background_color)
 
 # ----- MÜZİK -----
-# mixer.init() # initialize (başlat)
-# mixer.music.load("retromusic.ogg")
-# mixer.music.play() # arkaplan olarak ayarla
-# mixer.music.set_volume(0.05) # müzik sesi kısma (0: ses yok, 1: en yüksek)
+mixer.init() # initialize (başlat)
+mixer.music.load("retromusic.ogg")
+mixer.music.play() # arkaplan olarak ayarla
+mixer.music.set_volume(0.05) # müzik sesi kısma (0: ses yok, 1: en yüksek)
 
 # ----- GAMESPRITE SINIFI -----
 class GameSprite(sprite.Sprite): # üst sınıf: Sprite, alt sınıf: GameSprite
@@ -39,7 +39,7 @@ class Player(GameSprite):
             # yukarıya belirlenmiş hız kadar hareket et:
             self.rect.y -= self.speed
         # aşağı tuş basılıysa ve ekranın altına dayanmadıysa:
-        if keys[K_DOWN] and self.rect.y < 495:
+        if keys[K_DOWN] and self.rect.y < (500 - self.rect.height):
             # aşağıya hareket:
             self.rect.y += self.speed
     # soldaki oyuncunun hareket fonksiyonu
@@ -49,12 +49,12 @@ class Player(GameSprite):
         if keys[K_w] and self.rect.y > 5:
             self.rect.y -= self.speed
         # S tuş basılıysa ve ekranın altına dayanmadıysa:
-        if keys[K_s] and self.rect.y < 495:
+        if keys[K_s] and self.rect.y < (500 - self.rect.height):
             self.rect.y += self.speed
 
 # ----- SPRITE TANIMLAMA -----
 racket1 = Player("racket1.png", 4, 30, 200, 50, 150) # oyuncu 1
-racket2 = Player("racket2.png", 4, 30, 200, 50, 150) # oyuncu 2
+racket2 = Player("racket2.png", 4, 620, 200, 50, 150) # oyuncu 2
 ball = GameSprite("ball.png", 4, 200, 200, 50, 50) # top
 
 # ----- YAZILAR -----
@@ -110,6 +110,6 @@ while game: # oyun döngüsü
     racket1.reset()
     racket2.reset()
     ball.reset()
-# ekranın güncellenmesi ve zamanlayıcının çalıştırılması:
-display.update()
-clock.tick(FPS)
+
+    clock.tick(FPS) # zamanlayıcının çalıştırılması
+    display.update() # ekran güncellenmesi
